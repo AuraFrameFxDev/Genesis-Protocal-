@@ -38,7 +38,7 @@ dependencies {
     implementation("io.gitlab.arturbosch.detekt:detekt-gradle-plugin:1.23.8")
     
     // OpenAPI Generator
-    implementation("org.openapitools:openapi-generator-gradle-plugin:7.8.0")
+    implementation("org.openapitools:openapi-generator-gradle-plugin:7.14.0")
 
     // Testing
     testImplementation("org.junit.jupiter:junit-jupiter:5.9.2")
