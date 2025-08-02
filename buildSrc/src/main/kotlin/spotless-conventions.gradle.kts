@@ -1,4 +1,3 @@
-import com.diffplug.spotless.IndentStep
 import org.gradle.api.artifacts.VersionCatalogsExtension
 import org.gradle.kotlin.dsl.getByType
 
@@ -38,7 +37,6 @@ spotless {
         targetExclude("**/build/**")
         ktlint("1.2.1")
         trimTrailingWhitespace()
-        indent(IndentStep.TABS)
         endWithNewline()
     }
 
@@ -47,7 +45,6 @@ spotless {
         target("**/*.md")
         targetExclude("**/build/**", "**/.gradle/**")
         trimTrailingWhitespace()
-        indent(IndentStep.SPACES, 2)
         endWithNewline()
     }
 }
