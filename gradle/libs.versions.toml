@@ -74,8 +74,8 @@ openapi-generator = "7.14.0"
 
 [plugins]
 # Core Android
-android-application = { id = "com.android.application" }
-android-library = { id = "com.android.library" }
+android-application = { id = "com.android.application", version.ref = "agp" }
+android-library = { id = "com.android.library", version.ref = "agp" }
 
 # Kotlin
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
