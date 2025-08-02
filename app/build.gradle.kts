@@ -106,8 +106,8 @@ dependencies {
     implementation("androidx.hilt:hilt-work:1.2.0")
 
     // DataStore
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
-    implementation("androidx.datastore:datastore-core:1.1.1")
+    implementation("androidx.datastore:datastore-preferences:1.1.7")
+    implementation("androidx.datastore:datastore-core:1.1.7")
 
     // Moshi for JSON
     implementation("com.squareup.moshi:moshi:1.15.1")
