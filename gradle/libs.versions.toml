@@ -10,7 +10,7 @@ jvmTarget = "24"
 javaVersion = "24"
 
 # Compose
-compose = "1.8.2"
+compose = "1.9.0+dev2730"
 composeCompiler = "2.2.0"  # Must match Kotlin version for K2
 composeBom = "2025.07.00"
 
