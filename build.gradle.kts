@@ -3,12 +3,13 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id("com.android.application")
-    alias(libs.plugins.kotlin.android)
+    id("org.jetbrains.kotlin.android")
     id("com.google.dagger.hilt.android")
     id("com.google.devtools.ksp")
     id("org.jetbrains.kotlin.plugin.serialization")
     id("org.jetbrains.kotlin.plugin.compose")
 }
+
 
 
 // Configure Java toolchain for all subprojects
