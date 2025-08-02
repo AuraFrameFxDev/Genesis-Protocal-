@@ -28,7 +28,7 @@ hilt = "2.57"
 # Network
 retrofit = "3.0.0"
 okhttp = "5.1.0"
-kotlinxSerialization = "1.7.3"
+kotlinxSerialization = "1.9.0"
 
 # Other
 timber = "5.0.1"
