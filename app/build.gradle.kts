@@ -112,7 +112,7 @@ dependencies {
     // Moshi for JSON
     implementation("com.squareup.moshi:moshi:1.15.1")
     implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
-    implementation("com.squareup.retrofit2:converter-moshi:2.11.0")
+    implementation("com.squareup.retrofit2:converter-moshi:3.0.0")
 
     // WorkManager
     implementation("androidx.work:work-runtime-ktx:2.10.3")
