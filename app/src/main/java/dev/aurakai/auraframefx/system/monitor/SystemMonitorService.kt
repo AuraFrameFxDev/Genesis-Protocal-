@@ -12,7 +12,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 
-@AndroidEntryPoint
+// @AndroidEntryPoint
 class SystemMonitorService : Service() {
 
     private val serviceJob = SupervisorJob()

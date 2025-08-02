@@ -153,55 +153,28 @@ abstract class OracleDriveModule {
                 .build()
                 .create(OracleDriveApi::class.java)
         }
-        .addHeader("Authorization", "Bearer ${securityContext.getAuthToken()}")
-        .addHeader("X-Requested-With", "XMLHttpRequest")
-        .build()
-        chain.proceed(request)
+
+        /**
+         * Provides a singleton instance of `OracleDriveServiceImpl` configured with the required agents, security context, and Oracle Drive API.
+         *
+         * @return A singleton `OracleDriveServiceImpl` for Oracle Drive operations.
+         */
+        @Provides
+        @Singleton
+        fun provideOracleDriveService(
+            genesisAgent: GenesisAgent,
+            auraAgent: AuraAgent,
+            kaiAgent: KaiAgent,
+            securityContext: SecurityContext,
+            oracleDriveApi: OracleDriveApi,
+        ): OracleDriveServiceImpl {
+            return OracleDriveServiceImpl(
+                genesisAgent = genesisAgent,
+                auraAgent = auraAgent,
+                kaiAgent = kaiAgent,
+                securityContext = securityContext,
+                oracleDriveApi = oracleDriveApi
+            )
+        }
     }
-    .addInterceptor(logging)
-    .connectTimeout(30, TimeUnit.SECONDS)
-    .readTimeout(30, TimeUnit.SECONDS)
-    .writeTimeout(30, TimeUnit.SECONDS)
-    .build()
-}
-
-/**
- * Provides a singleton instance of OracleDriveApi using a Retrofit client configured with a fixed base URL and Gson converter.
- *
- * @return An implementation of OracleDriveApi for communicating with the Oracle Drive backend.
- */
-@Provides
-@Singleton
-fun provideOracleDriveApi(client: OkHttpClient): OracleDriveApi {
-    return Retrofit.Builder()
-        .baseUrl("https://api.oracledrive.example.com/")
-        .client(client)
-        .addConverterFactory(GsonConverterFactory.create())
-        .build()
-        .create(OracleDriveApi::class.java)
-}
-
-/**
- * Provides a singleton instance of `OracleDriveServiceImpl` configured with the required agents, security context, and Oracle Drive API.
- *
- * @return A singleton `OracleDriveServiceImpl` for Oracle Drive operations.
- */
-@Provides
-@Singleton
-fun provideOracleDriveService(
-    genesisAgent: GenesisAgent,
-    auraAgent: AuraAgent,
-    kaiAgent: KaiAgent,
-    securityContext: SecurityContext,
-    oracleDriveApi: OracleDriveApi,
-): OracleDriveServiceImpl {
-    return OracleDriveServiceImpl(
-        genesisAgent = genesisAgent,
-        auraAgent = auraAgent,
-        kaiAgent = kaiAgent,
-        securityContext = securityContext,
-        oracleDriveApi = oracleDriveApi
-    )
-}
-}
 }

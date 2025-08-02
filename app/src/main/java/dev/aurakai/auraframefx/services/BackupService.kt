@@ -7,9 +7,9 @@ import android.util.Log
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
-class BackupService @Inject constructor() : Service() {
-    // TODO: If this service has dependencies to be injected, add them to the constructor.
+// @AndroidEntryPoint
+class BackupService : Service() {
+    // TODO: If this service has dependencies to be injected, add them as fields with @Inject.
 
     private val tag = "BackupService"
 

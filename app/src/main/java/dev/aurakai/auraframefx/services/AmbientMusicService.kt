@@ -6,8 +6,9 @@ import android.os.IBinder
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
 
-@AndroidEntryPoint
-class AmbientMusicService @Inject constructor() : Service() {
+// @AndroidEntryPoint
+class AmbientMusicService : Service() {
+    // TODO: If this service has dependencies to be injected, add them as fields with @Inject.
     /**
      * Called when a client attempts to bind to the service.
      *

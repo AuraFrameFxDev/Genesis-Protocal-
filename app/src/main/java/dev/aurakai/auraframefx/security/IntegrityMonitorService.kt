@@ -11,7 +11,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
-@AndroidEntryPoint
+// @AndroidEntryPoint
 class IntegrityMonitorService : Service() {
 
     @Inject

@@ -101,8 +101,21 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
+    // ksp(libs.hilt.compiler) // Temporarily disabled for memory testing
     implementation(libs.hilt.navigation.compose)
+    implementation("androidx.hilt:hilt-work:1.2.0")
+
+    // DataStore
+    implementation("androidx.datastore:datastore-preferences:1.1.1")
+    implementation("androidx.datastore:datastore-core:1.1.1")
+
+    // Moshi for JSON
+    implementation("com.squareup.moshi:moshi:1.15.1")
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
+    implementation("com.squareup.retrofit2:converter-moshi:2.11.0")
+
+    // WorkManager
+    implementation("androidx.work:work-runtime-ktx:2.9.1")
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
