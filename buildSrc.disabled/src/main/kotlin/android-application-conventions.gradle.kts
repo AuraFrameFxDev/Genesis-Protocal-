@@ -7,6 +7,7 @@ plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
     id("com.google.devtools.ksp") // Enable KSP for annotation processing
+    id("com.google.dagger.hilt.android") // Enable Hilt for dependency injection
 }
 
 android {

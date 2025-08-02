@@ -54,9 +54,9 @@ tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
     // Enable all available (but not necessarily all) rules
     allRules = false
     
-    // Target Java 17 bytecode
-    jvmTarget = "17"
-    
+    // Target Java 24 bytecode
+    jvmTarget = "24"
+
     // Enable auto-correction for the following checks
     // autoCorrect is false by default
     

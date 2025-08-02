@@ -101,7 +101,7 @@ dependencies {
 
     // Hilt - Temporarily disable KSP for successful build
     implementation(libs.hilt.android)
-    // ksp(libs.hilt.compiler) // Re-enable after successful build without KSP
+    ksp(libs.hilt.compiler) // Re-enabled for Hilt
     implementation(libs.hilt.navigation.compose)
     implementation("androidx.hilt:hilt-work:1.2.0")
 
@@ -131,7 +131,7 @@ dependencies {
     coreLibraryDesugaring(libs.coreLibraryDesugaring)
 
     // Testing
-    testImplementation(libs.bundles.testing)
+    testImplementation(libs.junit.jupiter)
     testRuntimeOnly(libs.junit.engine)
 
     // Android Instrumentation Tests

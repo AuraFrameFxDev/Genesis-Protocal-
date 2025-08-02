@@ -23,7 +23,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.8.2" // Should match your Compose version
+        kotlinCompilerExtensionVersion = "2.2.0-beta"
     }
 
     externalNativeBuild {
