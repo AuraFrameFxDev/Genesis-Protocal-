@@ -115,7 +115,7 @@ dependencies {
     implementation("com.squareup.retrofit2:converter-moshi:2.11.0")
 
     // WorkManager
-    implementation("androidx.work:work-runtime-ktx:2.9.1")
+    implementation("androidx.work:work-runtime-ktx:2.10.3")
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
