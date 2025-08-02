@@ -101,7 +101,7 @@ dependencies {
 
     // Hilt
     implementation(libs.hilt.android)
-    // ksp(libs.hilt.compiler) // Temporarily disabled for memory testing
+    ksp(libs.hilt.compiler)
     implementation(libs.hilt.navigation.compose)
     implementation("androidx.hilt:hilt-work:1.2.0")
 
