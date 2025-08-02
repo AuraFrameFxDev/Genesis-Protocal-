@@ -3,11 +3,11 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
     id("android-application-conventions")
+    id("openapi-generation-conventions")
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.compose)
-    id("org.openapi.generator") version "7.14.0"
-    id("io.gitlab.arturbosch.detekt")
-    id("com.diffplug.spotless")
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.spotless)
 }
 
 android {

@@ -1,0 +1,45 @@
+# Windows System Cleanup Commands
+# Run these commands one by one in an ELEVATED PowerShell (Run as Administrator)
+
+echo "=== Windows Drive Cleanup Commands ==="
+echo ""
+
+echo "1. STOP ALL GRADLE/JAVA PROCESSES:"
+echo "taskkill /F /IM java.exe /T"
+echo "taskkill /F /IM javaw.exe /T"
+echo ""
+
+echo "2. DELETE GRADLE FOLDER (Multiple methods):"
+echo 'Remove-Item -Path "$env:USERPROFILE\.gradle" -Recurse -Force'
+echo 'cmd /c "rmdir /s /q \"%USERPROFILE%\.gradle\""'
+echo 'takeown /F "%USERPROFILE%\.gradle" /R /D Y'
+echo 'icacls "%USERPROFILE%\.gradle" /grant administrators:F /T'
+echo ""
+
+echo "3. CLEAN TEMP FOLDERS:"
+echo 'Remove-Item -Path "$env:TEMP\*" -Recurse -Force'
+echo 'Remove-Item -Path "C:\Windows\Temp\*" -Recurse -Force'
+echo ""
+
+echo "4. BROWSER CACHE CLEANUP:"
+echo 'Remove-Item -Path "$env:LOCALAPPDATA\Google\Chrome\User Data\Default\Cache\*" -Recurse -Force'
+echo 'Remove-Item -Path "$env:LOCALAPPDATA\Microsoft\Edge\User Data\Default\Cache\*" -Recurse -Force'
+echo ""
+
+echo "5. WINDOWS CLEANUP TOOLS:"
+echo "cleanmgr /sagerun:1"
+echo "DISM /Online /Cleanup-Image /StartComponentCleanup /ResetBase"
+echo ""
+
+echo "6. DISK SPACE CHECK:"
+echo 'Get-WmiObject -Class Win32_LogicalDisk | Select DeviceID, @{Name="Size(GB)";Expression={[math]::Round($_.Size/1GB,2)}}, @{Name="Free(GB)";Expression={[math]::Round($_.FreeSpace/1GB,2)}}'
+echo ""
+
+echo "7. NUCLEAR OPTION FOR STUBBORN .GRADLE:"
+echo '$empty = "$env:TEMP\empty"; mkdir $empty; robocopy $empty "$env:USERPROFILE\.gradle" /purge; rmdir $empty'
+echo ""
+
+echo "⚠️ IMPORTANT:"
+echo "• Run PowerShell as Administrator"
+echo "• Close all development tools (VS Code, Android Studio, etc.)"
+echo "• Restart computer after cleanup"

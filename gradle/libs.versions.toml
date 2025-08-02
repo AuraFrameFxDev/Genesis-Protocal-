@@ -39,13 +39,25 @@ ndk = "26.2.11394342"
 # Documentation and System
 yuki = "2.0.1"
 lsposed = "1.9.2"
-dokka = "1.9.20"
+dokka = "2.0.0"
 
 # Room Database (version)
 roomVersion = "2.7.2"
 
 # OkHttp (additional)
 okhttp-core = "5.1.0"
+
+# Testing
+junit = "5.13.4"
+
+# Compose (updated)
+compose = "1.9.0"
+
+# Serialization (updated)
+kotlinxSerialization = "1.9.0"
+
+# OpenAPI Generator (updated)
+openapi-generator = "7.14.0"
 
 # Accompanist
 accompanist = "0.34.0"
@@ -68,6 +80,7 @@ kotlinx-coroutines = "1.10.2"
 # Code Quality
 spotless = "7.2.1"
 detekt = "1.23.8"
+openapi-generator = "7.14.0"
 
 [plugins]
 # Core Android
@@ -92,6 +105,9 @@ compose = { id = "org.jetbrains.compose", version.ref = "compose" }
 # Code Quality
 spotless = { id = "com.diffplug.spotless", version.ref = "spotless" }
 detekt = { id = "io.gitlab.arturbosch.detekt", version.ref = "detekt" }
+
+# OpenAPI Generator
+openapi-generator = { id = "org.openapi.generator", version.ref = "openapi-generator" }
 
 # Documentation
 dokka = { id = "org.jetbrains.dokka", version.ref = "dokka" }
@@ -166,6 +182,7 @@ coreLibraryDesugaring = { group = "com.android.tools", name = "desugar_jdk_libs"
 
 # Testing
 junit = { group = "junit", name = "junit", version.ref = "junit" }
+junit-jupiter = { group = "org.junit.jupiter", name = "junit-jupiter", version = "5.13.4" }
 androidx-test-ext-junit = { group = "androidx.test.ext", name = "junit", version.ref = "extJunit" }
 espresso-core = { group = "androidx.test.espresso", name = "espresso-core", version.ref = "espresso" }
 androidx-compose-ui-test-junit4 = { group = "androidx.compose.ui", name = "ui-test-junit4" }
