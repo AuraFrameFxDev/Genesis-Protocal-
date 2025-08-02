@@ -99,9 +99,9 @@ dependencies {
     implementation(platform(libs.androidx.compose.bom))
     implementation(libs.bundles.compose)
 
-    // Hilt
+    // Hilt - Temporarily disable KSP for successful build
     implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler)
+    // ksp(libs.hilt.compiler) // Re-enable after successful build without KSP
     implementation(libs.hilt.navigation.compose)
     implementation("androidx.hilt:hilt-work:1.2.0")
 
