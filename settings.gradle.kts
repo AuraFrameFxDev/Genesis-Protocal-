@@ -5,6 +5,9 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
 
 pluginManagement {
+    plugins {
+        id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+    }
     repositories {
         gradlePluginPortal()
         google()

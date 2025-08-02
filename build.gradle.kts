@@ -1,9 +1,9 @@
 plugins {
     // Android plugins with explicit versions
-    id("com.android.application") version "8.12.0" apply false
-    id("com.android.library") version "8.12.0" apply false
-    id("com.google.devtools.ksp") version "2.2.0-2.0.2" apply false
-    id("com.google.dagger.hilt.android") version "2.57" apply false
+    id("com.android.application") apply false
+    id("com.android.library") apply false
+    id("com.google.devtools.ksp") apply false
+    id("com.google.dagger.hilt.android") apply false
     alias(libs.plugins.kotlin.compose) apply false
 }
 
