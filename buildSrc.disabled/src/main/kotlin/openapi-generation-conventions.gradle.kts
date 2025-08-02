@@ -50,9 +50,11 @@ tasks.register<GenerateTask>("generateApiClient") {
     ignoreFileOverride.set("${rootProject.projectDir}/.openapi-generator-ignore")
 }
 
-// Auto-generate API client before compiling
-tasks.named("compileKotlin") {
-    dependsOn("generateApiClient")
+// Auto-generate API client before compiling - defer until Kotlin plugin is applied
+pluginManager.withPlugin("org.jetbrains.kotlin.android") {
+    tasks.named("compileKotlin") {
+        dependsOn("generateApiClient")
+    }
 }
 
 // Add generated sources to source sets only if Android plugin is applied

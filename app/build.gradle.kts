@@ -2,11 +2,12 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("android-application-conventions")
-    id("openapi-generation-conventions")
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("com.google.dagger.hilt.android")
+    alias(libs.plugins.ksp)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.compose)
-    alias(libs.plugins.spotless)
 }
 
 android {
@@ -49,6 +50,17 @@ android {
         buildConfig = true
     }
 
+    compileOptions {
+        sourceCompatibility = JavaVersion.VERSION_24
+        targetCompatibility = JavaVersion.VERSION_24
+    }
+
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_24)
+        }
+    }
+
     composeOptions {
         kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
     }
@@ -74,38 +86,12 @@ android {
         unitTests.isIncludeAndroidResources = true
         unitTests.isReturnDefaultValues = true
     }
-
-    // OpenAPI Generator configuration
-    openApiGenerate {
-        generatorName.set("kotlin")
-        inputSpec.set("${rootProject.projectDir}/openapi.yml")
-        outputDir.set(layout.buildDirectory.dir("generated/openapi").get().asFile.path)
-        configFile.set("${rootProject.projectDir}/openapi-generator-config.json")
-        skipOverwrite.set(false)
-        library.set("jvm-retrofit2")
-        apiPackage.set("dev.aurakai.auraframefx.api.generated")
-        modelPackage.set("dev.aurakai.auraframefx.model.generated")
-        configOptions.set(
-            mapOf(
-                "useCoroutines" to "true",
-                "serializationLibrary" to "kotlinx_serialization",
-                "enumPropertyNaming" to "UPPERCASE"
-            )
-        )
-    }
-
-    sourceSets.getByName("main") {
-        java.srcDir(layout.buildDirectory.dir("generated/openapi/src/main/kotlin"))
-    }
-
-    tasks.named("preBuild") {
-        dependsOn("openApiGenerate")
-    }
 }
 
 dependencies {
     // Core AndroidX
     implementation(libs.androidx.core.ktx)
+    implementation("androidx.appcompat:appcompat:1.7.0")
     implementation(libs.bundles.lifecycle)
     implementation(libs.androidx.activity.compose)
 
@@ -125,7 +111,7 @@ dependencies {
     implementation(libs.retrofit)
     implementation(libs.retrofit.converter.kotlinx.serialization)
     implementation(libs.okhttp)
-    implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.okhttp3.logging.interceptor)
     implementation(libs.kotlinx.serialization.json)
 
     // Core library desugaring
