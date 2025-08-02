@@ -26,28 +26,14 @@ import java.util.concurrent.TimeUnit
 import javax.inject.Singleton
 
 /**
- * Hilt Module for Oracle Drive dependencies
- *
- * Follows Kai's methodology:
- * - Secure by design
- * - Comprehensive dependency management
- * - Clear scoping and lifecycle management
+ * Hilt Module for Oracle Drive dependencies - Temporarily simplified for build optimization
  */
 @Module
 @InstallIn(SingletonComponent::class)
-abstract class OracleDriveModule {
-
-    /**
-     * Binds the OracleDriveServiceImpl implementation to the OracleDriveService interface as a singleton.
-     */
-    @Binds
-    @Singleton
-    abstract fun bindOracleDriveService(
-        impl: OracleDriveServiceImpl,
-    ): OracleDriveService
-
-    /**
-     * Binds the GenesisSecureFileService implementation to the SecureFileService interface as a singleton.
+object OracleDriveModule {
+    // Temporarily simplified to resolve build stalling at 25%
+    // Complex providers will be re-enabled after successful build
+}
      *
      * This allows dependency injection of SecureFileService throughout the application using the GenesisSecureFileService implementation.
      */
