@@ -33,7 +33,6 @@ dependencies {
     implementation("com.android.tools.build:gradle:8.12.0")
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.0")
     implementation("org.jetbrains.kotlin:kotlin-serialization:2.2.0")
-    implementation("org.jetbrains.kotlin:kotlin-compose-compiler:2.2.0")
     implementation("com.google.devtools.ksp:symbol-processing-gradle-plugin:2.2.0-2.0.2")
     implementation("com.google.dagger:hilt-android-gradle-plugin:2.57")
     implementation("com.diffplug.spotless:spotless-plugin-gradle:7.2.1")

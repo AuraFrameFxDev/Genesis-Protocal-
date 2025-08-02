@@ -11,7 +11,6 @@ javaVersion = "24"
 
 # Compose
 compose = "1.9.0"
-composeCompiler = "2.2.0"  # Must match Kotlin version for K2
 composeBom = "2025.07.00"
 
 # AndroidX Core
