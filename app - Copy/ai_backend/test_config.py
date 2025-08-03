@@ -94,16 +94,16 @@ URL_FORMATS = [
 # Test helpers
 def create_mock_response(status_code=200, json_data=None, headers=None, text=None):
     """
-    Generate a mock HTTP response object with customizable status code, headers, text, and JSON data for testing purposes.
+    Generate a mock HTTP response object for testing with customizable status code, headers, text, and JSON data.
     
     Parameters:
         status_code (int, optional): HTTP status code to simulate. Defaults to 200.
-        json_data (optional): Value to return from the mock's `json()` method; if not provided, calling `json()` raises a ValueError.
+        json_data (optional): Value returned by the mock's `json()` method; if not provided, calling `json()` raises a ValueError.
         headers (dict, optional): Headers to include in the mock response.
         text (str, optional): Response text content.
     
     Returns:
-        Mock: A mock object simulating an HTTP response, including `status_code`, `headers`, `text`, a `json()` method, and a `raise_for_status()` method that raises an exception for error status codes (>=400).
+        Mock: A mock HTTP response object with `status_code`, `headers`, `text`, a `json()` method, and a `raise_for_status()` method that raises an exception for status codes 400 and above.
     """
     from unittest.mock import Mock
 
@@ -127,13 +127,13 @@ def create_mock_response(status_code=200, json_data=None, headers=None, text=Non
 
 def create_test_connector(config_overrides=None):
     """
-    Instantiate a GenesisConnector for testing with default configuration, allowing optional overrides.
+    Instantiate a GenesisConnector for testing using default configuration, with optional overrides.
     
     Parameters:
-        config_overrides (dict, optional): Dictionary of configuration values to override the defaults.
+        config_overrides (dict, optional): Configuration values to override the defaults.
     
     Returns:
-        GenesisConnector: An instance initialized with the merged configuration for testing purposes.
+        GenesisConnector: Instance initialized with the merged configuration for testing.
     """
     config = TEST_CONFIG.copy()
     if config_overrides:

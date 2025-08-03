@@ -28,9 +28,9 @@ import dev.aurakai.auraframefx.ui.theme.AuraFrameFXTheme
 
 class MainActivity : ComponentActivity() {
     /**
-     * Sets up the activity's UI by applying the app theme and displaying the main screen using Jetpack Compose.
+     * Initializes the activity and sets the content view using Jetpack Compose with the app's theme and main screen.
      *
-     * @param savedInstanceState The previously saved state of the activity, or null if none exists.
+     * @param savedInstanceState The previously saved state of the activity, or null if the activity is being created for the first time.
      */
     @OptIn(ExperimentalMaterial3Api::class)
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,9 +43,9 @@ class MainActivity : ComponentActivity() {
     }
 
     /**
-     * Handles cleanup operations before the activity is destroyed.
+     * Called when the activity is about to be destroyed.
      *
-     * Override to release resources or perform final tasks prior to activity removal from memory.
+     * Override to perform cleanup or resource release before the activity is removed from memory.
      */
     override fun onDestroy() {
         super.onDestroy()
@@ -61,9 +61,9 @@ class MainActivity : ComponentActivity() {
  */
 @OptIn(ExperimentalMaterial3Api::class)
 /**
- * Displays the main application UI with a scaffolded layout, bottom navigation bar, and optional digital pixel visual effect.
+ * Composes the main application screen with a scaffolded layout, bottom navigation bar, and optional digital pixel visual effect.
  *
- * Provides a text input for theme commands, applies theme changes via the provided view model, and hosts the app's navigation graph. The content area can be visually enhanced with a cyberpunk-style digital pixel effect.
+ * Includes a text field for entering theme commands, a button to apply theme changes via the provided view model, and hosts the app's navigation graph within the content area. The digital pixel effect can be toggled to visually enhance the main content.
  */
 @Composable
 fun MainScreen(themeViewModel: ThemeViewModel = hiltViewModel()) {
@@ -112,7 +112,7 @@ fun MainScreen(themeViewModel: ThemeViewModel = hiltViewModel()) {
 }
 
 /**
- * Provides a design-time preview of the main screen composable wrapped in the app's theme.
+ * Displays a design-time preview of the main screen within the app's theme for UI inspection in the IDE.
  */
 @Preview(showBackground = true)
 @Composable

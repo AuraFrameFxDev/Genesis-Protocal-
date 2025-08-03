@@ -6,11 +6,11 @@ import java.io.File
 interface AuraAIService {
 
     /**
-     * Returns a static placeholder response for an analytics query.
+     * Returns a fixed placeholder string for any analytics query.
      *
-     * The input query is ignored and a fixed string is always returned.
+     * The input query is ignored and the method always returns a static response.
      *
-     * @return A placeholder analytics response.
+     * @return A placeholder analytics response string.
      */
     fun analyticsQuery(_query: String): String {
         // TODO: Implement analytics query
@@ -18,10 +18,10 @@ interface AuraAIService {
     }
 
     /**
-     * Downloads a file by its unique identifier.
+     * Asynchronously downloads a file by its unique identifier.
      *
      * @param _fileId The unique identifier of the file to download.
-     * @return The downloaded file, or null if the file does not exist or cannot be retrieved.
+     * @return The downloaded file, or null if the file is unavailable.
      */
     suspend fun downloadFile(_fileId: String): File? {
         // TODO: Implement file download
@@ -29,10 +29,10 @@ interface AuraAIService {
     }
 
     /**
-     * Generates an image based on the provided text prompt.
+     * Asynchronously generates an image from a text prompt.
      *
-     * @param _prompt The text description used to guide image generation.
-     * @return A ByteArray representing the generated image, or null if image generation is not available.
+     * @param _prompt The text description to guide image creation.
+     * @return The generated image as a ByteArray, or null if image generation is unavailable.
      */
     suspend fun generateImage(_prompt: String): ByteArray? { // Returns URL or path to image -> ByteArray?
         // TODO: Implement image generation
@@ -40,9 +40,9 @@ interface AuraAIService {
     }
 
     /**
-     * Generates AI text based on a prompt and optional configuration options.
+     * Asynchronously generates AI text based on a prompt and optional configuration options.
      *
-     * Uses the provided prompt and configuration options ("temperature" as Double, "max_tokens" as Int) to generate a structured response string. Returns an error message if text generation fails.
+     * Uses the provided prompt and options ("temperature" as Double, "max_tokens" as Int) to produce a structured response string. Returns an error message if text generation fails.
      *
      * @param prompt The input prompt for text generation.
      * @param options Optional configuration map supporting "temperature" (Double) and "max_tokens" (Int).
@@ -66,10 +66,10 @@ interface AuraAIService {
     }
 
     /**
-     * Generates a formatted AI response string for the given prompt, incorporating optional context and system instructions.
+     * Generates a formatted AI response string for the given prompt, optionally including context and system instructions.
      *
-     * @param prompt The input prompt to generate a response for.
-     * @param options Optional map that may include "context" and "system_prompt" keys to customize the response.
+     * @param prompt The input prompt for which to generate a response.
+     * @param options Optional map that may include "context" (String) and "system_prompt" (String) to customize the response.
      * @return A multi-line string containing the prompt, context (if provided), system prompt, and a generated response, or an error message if an exception occurs.
      */
     fun getAIResponse(
@@ -96,23 +96,23 @@ interface AuraAIService {
     }
 
     /**
- * Retrieves a stored memory value associated with the given key.
+ * Retrieves the value associated with the specified memory key.
  *
- * @param memoryKey The key identifying the memory entry.
- * @return The value as a string if found, or null if the key does not exist.
+ * @param memoryKey The unique identifier for the memory entry.
+ * @return The stored value as a string, or null if no value exists for the given key.
  */
     fun getMemory(memoryKey: String): String?
 
     /**
- * Saves a value associated with the specified key for later retrieval.
+ * Stores a value with the given key for future retrieval.
  *
- * @param key The identifier used to reference the stored value.
- * @param value The value to store in memory.
+ * @param key The unique identifier for the memory entry.
+ * @param value The data to associate with the key.
  */
     fun saveMemory(key: String, value: Any)
 
     /**
-     * Returns whether the AI service is currently connected.
+     * Indicates whether the AI service is currently connected.
      *
      * @return Always returns `true`.
      */
@@ -122,10 +122,10 @@ interface AuraAIService {
     }
 
     /**
-     * Publishes a message to the specified Pub/Sub topic.
+     * Publishes a message to a specified Pub/Sub topic.
      *
-     * @param _topic The name of the topic to publish to.
-     * @param _message The message content to be published.
+     * @param _topic The target topic for the message.
+     * @param _message The content to publish.
      */
     fun publishPubSub(_topic: String, _message: String) {
         // TODO: Implement PubSub publishing
@@ -133,10 +133,10 @@ interface AuraAIService {
 
 
     /**
-     * Uploads a file and returns its unique identifier or URL.
+     * Asynchronously uploads a file and returns its unique identifier or URL.
      *
-     * @param _file The file to upload.
-     * @return The unique file ID or URL if the upload is successful, or null if not implemented.
+     * @param _file The file to be uploaded.
+     * @return The unique file ID or URL if the upload succeeds, or null if not implemented.
      */
     suspend fun uploadFile(_file: File): String? { // Returns file ID or URL
         // TODO: Implement file upload
@@ -144,9 +144,9 @@ interface AuraAIService {
     }
 
     /**
-     * Retrieves the application's AI configuration.
+     * Returns the application's AI configuration, or null if unavailable.
      *
-     * @return The AI configuration if available, or null if not set.
+     * @return The current AI configuration, or null if not set.
      */
 
     fun getAppConfig(): dev.aurakai.auraframefx.ai.config.AIConfig? {
