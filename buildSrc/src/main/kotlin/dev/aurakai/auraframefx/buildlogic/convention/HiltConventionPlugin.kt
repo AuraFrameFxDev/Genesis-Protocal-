@@ -8,9 +8,7 @@ import org.gradle.kotlin.dsl.getByType
 
 class HiltConventionPlugin : Plugin<Project> {
     /**
-     * Configures the target Gradle project with Hilt and KSP integration using the version catalog.
-     *
-     * Applies the Hilt Android and Kotlin Symbol Processing (KSP) plugins, and adds the necessary Hilt dependencies for main and test source sets by retrieving plugin IDs and library coordinates from the "libs" version catalog.
+     * Configures Hilt dependency injection and KSP for the target project using version catalog dependencies.
      */
     override fun apply(target: Project) {
         with(target) {
