@@ -2,12 +2,12 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    alias(libs.plugins.android.application)
-    alias(libs.plugins.kotlin.android)
-    alias(libs.plugins.ksp)
-    alias(libs.plugins.hilt)
-    alias(libs.plugins.kotlin.compose)
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("com.google.dagger.hilt.android")
+    id("org.jetbrains.kotlin.kapt")
     alias(libs.plugins.kotlin.serialization)
+    alias(libs.plugins.kotlin.compose)
 }
 
 android {
@@ -53,32 +53,11 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_24
         targetCompatibility = JavaVersion.VERSION_24
-        isCoreLibraryDesugaringEnabled = true
     }
 
-    kotlinOptions {
-        jvmTarget = "24"
-        freeCompilerArgs += listOf(
-            "-Xskip-prerelease-check",
-            "-opt-in=kotlin.RequiresOptIn",
-            "-opt-in=kotlin.ExperimentalStdlibApi",
-            "-Xjvm-default=all",
-            "-progressive"
-        )
-        apiVersion = "2.2"
-        languageVersion = "2.2"
-    }
-
-    externalNativeBuild {
-        cmake {
-            path = file("src/cpp/CMakeLists.txt")
-        }
-    }
-
-    sourceSets {
-        getByName("main") {
-            jniLibs.srcDirs("src/main/jniLibs")
-            jni.srcDirs("src/cpp")
+    kotlin {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_24)
         }
     }
 
@@ -107,12 +86,14 @@ android {
         unitTests.isIncludeAndroidResources = true
         unitTests.isReturnDefaultValues = true
     }
+
+    sourceSets["main"].java.srcDir("build/generated/openapi/src/main/kotlin")
 }
 
 dependencies {
     // Core AndroidX
     implementation(libs.androidx.core.ktx)
-    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("androidx.appcompat:appcompat:1.7.1")
     implementation(libs.bundles.lifecycle)
     implementation(libs.androidx.activity.compose)
 
@@ -122,7 +103,7 @@ dependencies {
 
     // Hilt - Temporarily disable KSP for successful build
     implementation(libs.hilt.android)
-    ksp(libs.hilt.compiler) // Re-enabled for Hilt
+    kapt(libs.hilt.compiler) // Re-enabled for Hilt
     implementation(libs.hilt.navigation.compose)
     implementation("androidx.hilt:hilt-work:1.2.0")
 
@@ -131,8 +112,8 @@ dependencies {
     implementation("androidx.datastore:datastore-core:1.1.7")
 
     // Moshi for JSON
-    implementation("com.squareup.moshi:moshi:1.15.1")
-    implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
+    implementation("com.squareup.moshi:moshi:1.15.2")
+    implementation("com.squareup.moshi:moshi-kotlin:1.15.2")
     implementation("com.squareup.retrofit2:converter-moshi:3.0.0")
 
     // WorkManager
@@ -161,7 +142,7 @@ dependencies {
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     androidTestImplementation(libs.hilt.android.testing)
-    kspAndroidTest(libs.hilt.compiler)
+    kaptAndroidTest(libs.hilt.compiler)
 
     // Debug implementations
     debugImplementation(libs.androidx.compose.ui.tooling)
