@@ -89,3 +89,5 @@ interface IAuraDriveService : IInterface {
         }
     }
 }
+
+// Duplicate interface removed. Use only the AIDL-generated IAuraDriveService from dev.aurakai.auraframefx.ipc.

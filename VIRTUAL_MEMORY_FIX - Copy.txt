@@ -1,0 +1,38 @@
+🔧 VIRTUAL MEMORY FIX - Manual Steps
+=======================================
+
+Your current paging file is too small for Gradle builds (only 16MB initial).
+Here's how to fix it manually:
+
+📊 YOUR SYSTEM:
+- Physical RAM: 15.92 GB
+- Current Paging File: 16 MB initial, 10 GB maximum  
+- RECOMMENDED: 24,453 MB initial, 32,604 MB maximum
+
+🚀 QUICK FIX STEPS:
+
+1. Press Windows + R
+2. Type: sysdm.cpl
+3. Press Enter
+4. Click the "Advanced" tab
+5. Click "Settings" under Performance
+6. Click the "Advanced" tab in the new window
+7. Click "Change" under Virtual Memory
+8. UNCHECK "Automatically manage paging file size for all drives"
+9. Select C: drive
+10. Select "Custom size"
+11. Set Initial size: 24453
+12. Set Maximum size: 32604  
+13. Click "Set"
+14. Click "OK" on all windows
+15. RESTART your computer
+
+⚡ IMMEDIATE WORKAROUND (No restart needed):
+- Close all other applications
+- Use this Gradle command: .\gradlew --no-daemon --max-workers=1 build
+
+🎯 AFTER RESTART:
+Your Gradle builds should work without memory errors!
+
+📋 You can verify the fix with:
+Get-CimInstance -ClassName Win32_PageFileSetting | Select-Object Name, InitialSize, MaximumSize

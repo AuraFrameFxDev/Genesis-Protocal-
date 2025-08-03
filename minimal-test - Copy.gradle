@@ -1,0 +1,21 @@
+plugins {
+    id("java")
+}
+
+repositories {
+    mavenCentral()
+}
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(24))
+    }
+}
+
+tasks.register("hello") {
+    doLast {
+        println("Hello from minimal Gradle project!")
+        println("Java version: ${System.getProperty("java.version")}")
+        println("Available memory: ${Runtime.getRuntime().maxMemory() / 1024 / 1024} MB")
+    }
+}
