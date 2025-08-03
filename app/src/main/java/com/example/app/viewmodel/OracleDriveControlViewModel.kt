@@ -28,7 +28,7 @@ class OracleDriveControlViewModel @Inject constructor(
     @ApplicationContext private val context: Context,
 ) : ViewModel() {
 
-    private val TAG = "OracleDriveVM"
+    private val tag = "OracleDriveVM"
 
     // Service connection state
     private var auraDriveService: dev.aurakai.auraframefx.ipc.IAuraDriveService? = null
