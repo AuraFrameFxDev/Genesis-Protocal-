@@ -2,6 +2,12 @@ plugins {
     `kotlin-dsl`
     `kotlin-dsl-precompiled-script-plugins`
     `java-gradle-plugin`
+       id("com.android.application") version "8.12.0" apply false
+    id("com.android.library") version "8.12.0" apply false
+    id("com.google.devtools.ksp") version "2.2.0-2.0.2" apply false
+    id("com.google.dagger.hilt.android") version "2.57" apply false
+    alias(libs.plugins.kotlin.compose) apply false
+
 }
 
 repositories {
