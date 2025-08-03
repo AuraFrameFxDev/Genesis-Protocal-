@@ -13,9 +13,9 @@ extern "C" {
 /**
  * @brief Initializes the native language identifier with the given model path.
  *
- * Logs the provided model path for potential future use and returns the native library version string. The model path is not used in the current rule-based implementation.
+ * Converts the provided Java string model path to a UTF-8 C string, logs the path for potential future use, and returns the native library version string. If the model path is null or cannot be converted, returns an empty string.
  *
- * @return jstring Native library version string ("1.2.0"), or an empty string if the model path is null.
+ * @return jstring The native library version string, or an empty string if the model path is null.
  */
 JNIEXPORT jstring
 
@@ -154,9 +154,9 @@ Java_com_example_app_language_LanguageIdentifier_nativeDetectLanguage(
 }
 
 /**
- * @brief Placeholder for releasing language identifier resources.
+ * @brief Placeholder for releasing resources associated with a language identifier handle.
  *
- * Logs cleanup for the provided handle, but performs no actual resource deallocation as the implementation is stateless.
+ * Logs cleanup for the provided handle if it is non-zero. No actual resource deallocation is performed in the current implementation.
  *
  * @param handle Native handle for the language identifier instance.
  */

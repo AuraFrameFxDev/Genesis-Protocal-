@@ -28,7 +28,7 @@ import dev.aurakai.auraframefx.ui.theme.AuraFrameFXTheme
 
 class MainActivity : ComponentActivity() {
     /**
-     * Sets up the activity and displays the main Compose UI wrapped in the app's theme.
+     * Sets up the activity's UI by applying the app theme and displaying the main screen using Jetpack Compose.
      *
      * @param savedInstanceState The previously saved state of the activity, or null if none exists.
      */
@@ -45,7 +45,7 @@ class MainActivity : ComponentActivity() {
     /**
      * Handles cleanup operations before the activity is destroyed.
      *
-     * Called when the activity is about to be removed from memory, allowing for resource release or other finalization tasks.
+     * Override to release resources or perform final tasks prior to activity removal from memory.
      */
     override fun onDestroy() {
         super.onDestroy()
@@ -63,7 +63,7 @@ class MainActivity : ComponentActivity() {
 /**
  * Displays the main application UI with a scaffolded layout, bottom navigation bar, and optional digital pixel visual effect.
  *
- * Provides a text field and button for entering and applying theme commands via the supplied view model. The main content area hosts the app's navigation graph and can be visually enhanced with a digital pixel effect, controlled by internal state.
+ * Provides a text input for theme commands, applies theme changes via the provided view model, and hosts the app's navigation graph. The content area can be visually enhanced with a cyberpunk-style digital pixel effect.
  */
 @Composable
 fun MainScreen(themeViewModel: ThemeViewModel = hiltViewModel()) {
@@ -112,7 +112,7 @@ fun MainScreen(themeViewModel: ThemeViewModel = hiltViewModel()) {
 }
 
 /**
- * Renders a design-time preview of the main screen composable wrapped in the app's theme.
+ * Provides a design-time preview of the main screen composable wrapped in the app's theme.
  */
 @Preview(showBackground = true)
 @Composable

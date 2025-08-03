@@ -98,12 +98,12 @@ def create_mock_response(status_code=200, json_data=None, headers=None, text=Non
     
     Parameters:
         status_code (int, optional): HTTP status code to simulate. Defaults to 200.
-        json_data (optional): Value to be returned by the mock's `json()` method. If not provided, calling `json()` raises a ValueError.
+        json_data (optional): Value to return from the mock's `json()` method; if not provided, calling `json()` raises a ValueError.
         headers (dict, optional): Headers to include in the mock response.
         text (str, optional): Response text content.
     
     Returns:
-        Mock: A mock object simulating an HTTP response, including `status_code`, `headers`, `text`, a `json()` method, and a `raise_for_status()` method that raises an exception for status codes 400 and above.
+        Mock: A mock object simulating an HTTP response, including `status_code`, `headers`, `text`, a `json()` method, and a `raise_for_status()` method that raises an exception for error status codes (>=400).
     """
     from unittest.mock import Mock
 
@@ -127,13 +127,13 @@ def create_mock_response(status_code=200, json_data=None, headers=None, text=Non
 
 def create_test_connector(config_overrides=None):
     """
-    Instantiate and return a GenesisConnector configured for testing, merging default test settings with any provided overrides.
+    Instantiate a GenesisConnector for testing with default configuration, allowing optional overrides.
     
     Parameters:
         config_overrides (dict, optional): Dictionary of configuration values to override the defaults.
     
     Returns:
-        GenesisConnector: A test instance initialized with the merged configuration.
+        GenesisConnector: An instance initialized with the merged configuration for testing purposes.
     """
     config = TEST_CONFIG.copy()
     if config_overrides:
