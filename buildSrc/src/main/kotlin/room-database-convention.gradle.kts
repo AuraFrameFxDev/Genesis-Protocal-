@@ -7,11 +7,13 @@ plugins {
     id("android-library-conventions")
 }
 
+val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+
 dependencies {
-    implementation("androidx.room:room-runtime:2.6.1")
-    implementation("androidx.room:room-ktx:2.6.1")
-    add("ksp", "androidx.room:room-compiler:2.6.1")
-    testImplementation("androidx.room:room-testing:2.6.1")
+    implementation(libs.findLibrary("room.runtime").get())
+    implementation(libs.findLibrary("room.ktx").get())
+    add("ksp", libs.findLibrary("room.compiler").get())
+    testImplementation(libs.findLibrary("room.testing").get())
 }
 
 android {
