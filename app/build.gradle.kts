@@ -106,7 +106,11 @@ android {
 dependencies {
     // Core AndroidX
     implementation(libs.androidx.core.ktx)
+
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.recyclerview)
     implementation("androidx.appcompat:appcompat:1.7.1")
+
     implementation(libs.bundles.lifecycle)
     implementation(libs.androidx.activity.compose)
 
@@ -166,4 +170,11 @@ dependencies {
     implementation(files("${project.rootDir}/Libs/api-82-sources.jar"))
     // Dokka for documentation
     implementation("org.openapitools:openapi-generator-gradle-plugin:7.4.0")
+}
+
+// Documentation validation testing dependencies
+dependencies {
+    // Core testing framework (already present via libs.bundles.testing)
+    // Additional documentation-specific testing utilities
+    testImplementation("org.jsoup:jsoup:1.17.2") // For HTML/markdown parsing if needed
 }

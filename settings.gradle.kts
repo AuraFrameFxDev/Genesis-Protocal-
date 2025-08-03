@@ -36,8 +36,8 @@ rootProject.name = "Genesis-Os"
 
 // Include only app module for testing
 include(":app")
-// include(":core-module")
-// include(":feature-module")
-// include(":datavein-oracle-drive")
-// include(":datavein-oracle-native")
-// include(":secure-comm")
+include(":core-module")
+include(":feature-module")
+include(":datavein-oracle-drive")
+include(":datavein-oracle-native")
+include(":secure-comm")
