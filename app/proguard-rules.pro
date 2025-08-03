@@ -1,4 +1,4 @@
-# Add project specific ProGuard rules here.
+C# Add project specific ProGuard rules here.
 # You can control the set of applied configuration files using the
 # proguardFiles setting in build.gradle.
 
@@ -60,6 +60,74 @@
 
 # Keep custom exceptions
 -keep class dev.aurakai.auraframefx.**Exception { *; }
+
+# --- Compose & Kotlin ---
+-keep class androidx.compose.** { *; }
+-keep class androidx.activity.compose.** { *; }
+-keep class androidx.lifecycle.viewmodel.compose.** { *; }
+-keep class kotlin.Metadata { *; }
+-keepclassmembers class ** {
+    @kotlin.Metadata *;
+}
+-dontwarn kotlin.**
+-dontwarn androidx.compose.**
+
+# --- Moshi & kotlinx.serialization ---
+-keep class com.squareup.moshi.** { *; }
+-keep class kotlinx.serialization.** { *; }
+-keepclassmembers class ** {
+    @kotlinx.serialization.Serializable *;
+}
+-dontwarn com.squareup.moshi.**
+-dontwarn kotlinx.serialization.**
+
+# --- Hilt & Dagger ---
+-keep class dagger.hilt.** { *; }
+-keep class dagger.hilt.internal.** { *; }
+-keep class javax.inject.** { *; }
+-keep class dagger.** { *; }
+-keep class hilt_aggregated_deps.** { *; }
+-dontwarn dagger.hilt.**
+-dontwarn hilt_aggregated_deps.**
+
+# --- WorkManager & DataStore ---
+-keep class androidx.work.** { *; }
+-keep class androidx.datastore.** { *; }
+-dontwarn androidx.work.**
+-dontwarn androidx.datastore.**
+
+# --- OpenAPI/Swagger Generated Models ---
+-keep class org.openapitools.** { *; }
+-dontwarn org.openapitools.**
+
+# --- Native/JNI Integration ---
+-keepclasseswithmembernames class * {
+    native <methods>;
+}
+
+# --- LSPosed/YukiHook ---
+-keep class org.lsposed.** { *; }
+-keep class xyz.nextalone.** { *; }
+-keep class rikka.hidden.compat.** { *; }
+-keep class de.robv.android.xposed.** { *; }
+-dontwarn org.lsposed.**
+-dontwarn xyz.nextalone.**
+-dontwarn rikka.hidden.compat.**
+-dontwarn de.robv.android.xposed.**
+
+# --- General AndroidX ---
+-keep class androidx.** { *; }
+-dontwarn androidx.**
+
+# --- Keep all enums (for reflection) ---
+-keepclassmembers enum * { *; }
+
+# --- Keep all annotations ---
+-keep @interface *
+
+# --- Keep all sealed and data classes ---
+-keep class **$$serializer { *; }
+-keep class **$Companion { *; }
 
 # Optimization settings
 -optimizations !code/simplification/arithmetic,!code/simplification/cast,!field/*,!class/merging/*

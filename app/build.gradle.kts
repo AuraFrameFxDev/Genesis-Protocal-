@@ -50,6 +50,19 @@ android {
         buildConfig = true
     }
 
+    externalNativeBuild {
+        cmake {
+            path = file("src/cpp/CMakeLists.txt")
+        }
+    }
+
+    sourceSets {
+        getByName("main") {
+            jniLibs.srcDirs("src/main/jniLibs")
+            jni.srcDirs("src/cpp")
+        }
+    }
+
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_24
         targetCompatibility = JavaVersion.VERSION_24

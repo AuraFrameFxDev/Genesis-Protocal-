@@ -11,5 +11,6 @@ import javax.inject.Singleton
 object AppModule {
     @Provides
     @Singleton
-    fun provideExampleString(): String = "Hilt is working!"
+    fun provideSampleString(): String = "Hilt is working!"
 }
+
