@@ -39,7 +39,7 @@ kotlin {
 dependencies {
 
     // Build plugins with explicit versions (buildSrc cannot use version catalog)
-    implementation("com.android.tools.build:gradle:8.11.1")
+    implementation("com.android.tools.build:gradle:8.12.0")
     implementation("org.jetbrains.kotlin:kotlin-gradle-plugin:2.2.0")
 
     implementation("com.google.devtools.ksp:symbol-processing-gradle-plugin:2.2.0-2.0.2")
