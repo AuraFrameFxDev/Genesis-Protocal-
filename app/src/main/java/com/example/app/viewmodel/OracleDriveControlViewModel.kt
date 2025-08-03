@@ -9,7 +9,6 @@ import android.os.IBinder
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.app.ipc.IAuraDriveService
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -32,7 +31,7 @@ class OracleDriveControlViewModel @Inject constructor(
     private val TAG = "OracleDriveVM"
 
     // Service connection state
-    private var auraDriveService: IAuraDriveService? = null
+    private var auraDriveService: dev.aurakai.auraframefx.ipc.IAuraDriveService? = null
     private var isBound = false
 
     // UI State
@@ -64,7 +63,7 @@ class OracleDriveControlViewModel @Inject constructor(
          */
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
             Log.d(TAG, "Service connected")
-            auraDriveService = IAuraDriveService.Stub.asInterface(service)
+            auraDriveService = dev.aurakai.auraframefx.ipc.IAuraDriveService.Stub.asInterface(service)
             isBound = true
             _isServiceConnected.value = true
             refreshStatus()
@@ -129,12 +128,11 @@ class OracleDriveControlViewModel @Inject constructor(
                 val service =
                     auraDriveService ?: throw IllegalStateException("Service not connected")
 
-                _status.value = service.oracleDriveStatus ?: "Status unavailable"
-                _detailedStatus.value =
-                    service.detailedInternalStatus ?: "Detailed status unavailable"
+                _status.value = service.getOracleDriveStatus() ?: "Status unavailable"
+                _detailedStatus.value = service.getDetailedInternalStatus() ?: "Detailed status unavailable"
 
-                val logs = service.internalDiagnosticsLog
-                _diagnosticsLog.value = logs?.joinToString("\n") ?: "No diagnostic logs available"
+                val logs = service.getInternalDiagnosticsLog()
+                _diagnosticsLog.value = logs?.split("\n")?.joinToString("\n") ?: "No diagnostic logs available"
 
                 _errorMessage.value = null
             } catch (e: Exception) {

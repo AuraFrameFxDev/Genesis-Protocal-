@@ -8,6 +8,7 @@ plugins {
     id("org.jetbrains.kotlin.kapt")
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.kotlin.compose)
+    id("org.openapi.generator") version "7.4.0"
 }
 
 android {
@@ -15,6 +16,7 @@ android {
     compileSdk = libs.versions.compileSdk.get().toInt()
 
     defaultConfig {
+        testInstrumentationRunnerArguments += mapOf()
         applicationId = "dev.aurakai.auraframefx"
         minSdk = libs.versions.minSdk.get().toInt()
         targetSdk = libs.versions.targetSdk.get().toInt()
@@ -26,6 +28,11 @@ android {
 
         vectorDrawables {
             useSupportLibrary = true
+        }
+        externalNativeBuild {
+            cmake {
+                cppFlags += ""
+            }
         }
     }
 
@@ -88,6 +95,12 @@ android {
     }
 
     sourceSets["main"].java.srcDir("build/generated/openapi/src/main/kotlin")
+    externalNativeBuild {
+        cmake {
+            path = file("src/main/cpp/CMakeLists.txt")
+            version = "3.22.1"
+        }
+    }
 }
 
 dependencies {
@@ -103,7 +116,7 @@ dependencies {
 
     // Hilt - Temporarily disable KSP for successful build
     implementation(libs.hilt.android)
-    kapt(libs.hilt.compiler) // Re-enabled for Hilt
+    // kapt(libs.hilt.compiler) // Re-enabled for Hilt
     implementation(libs.hilt.navigation.compose)
     implementation("androidx.hilt:hilt-work:1.2.0")
 
@@ -152,4 +165,5 @@ dependencies {
     implementation(files("${project.rootDir}/Libs/api-82.jar"))
     implementation(files("${project.rootDir}/Libs/api-82-sources.jar"))
     // Dokka for documentation
+    implementation("org.openapitools:openapi-generator-gradle-plugin:7.4.0")
 }
