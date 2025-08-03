@@ -10,7 +10,7 @@ plugins {
 }
 
 android {
-    namespace = "dev.aurakai.auraframefx"
+    // namespace should be defined in individual module build files
     compileSdk = 36 // Use your desired compileSdk version
 
     defaultConfig {
