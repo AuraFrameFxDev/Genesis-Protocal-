@@ -11,6 +11,14 @@ import kotlinx.coroutines.withContext
 class AiGenerationService(
     private val api: AiContentApi, // Updated type
 ) {
+    /**
+     * Generates AI-powered text based on the provided prompt and parameters.
+     *
+     * @param prompt The input text prompt to guide the AI-generated content.
+     * @param maxTokens The maximum number of tokens to generate in the response. Defaults to 500.
+     * @param temperature Controls the randomness of the output; higher values produce more creative results. Defaults to 0.7.
+     * @return A [Result] containing the generated text response on success, or an exception on failure.
+     */
     suspend fun generateText(
         prompt: String,
         maxTokens: Int = 500,

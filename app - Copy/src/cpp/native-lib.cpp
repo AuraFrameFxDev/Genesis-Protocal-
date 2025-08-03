@@ -9,9 +9,9 @@
 extern "C" /**
  * @brief Returns a greeting message from native C++ code to Java.
  *
- * Creates a Java string containing "Hello from Genesis C++ Core" and returns it to the Java caller.
+ * Creates and returns a new Java string containing "Hello from Genesis C++ Core".
  *
- * @return jstring Java string with the greeting message.
+ * @return jstring A Java string with the greeting message.
  */
 JNIEXPORT jstring
 

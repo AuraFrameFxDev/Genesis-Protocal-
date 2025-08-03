@@ -15,7 +15,7 @@ PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
-# print_status outputs an informational message prefixed with a blue [INFO] label.
+# print_status outputs an informational message with a blue [INFO] label.
 print_status() {
     echo -e "${BLUE}[INFO]${NC} $1"
 }
@@ -35,7 +35,7 @@ print_error() {
     echo -e "${RED}[ERROR]${NC} $1"
 }
 
-# print_genesis displays a message with a purple [GENESIS] label for Genesis Layer notifications.
+# print_genesis prints a Genesis Layer message with a purple [GENESIS] label.
 print_genesis() {
     echo -e "${PURPLE}[GENESIS]${NC} $1"
 }
