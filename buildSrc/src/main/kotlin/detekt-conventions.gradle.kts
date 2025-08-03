@@ -55,7 +55,7 @@ tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
     allRules = false
 
     // Target Java 17 bytecode
-    jvmTarget = "17"
+    // jvmTarget is set globally below to JavaVersion.VERSION_21.toString()
 
     // Enable auto-correction for the following checks
     // autoCorrect is false by default
