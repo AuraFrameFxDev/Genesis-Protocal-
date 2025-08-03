@@ -15,7 +15,7 @@ PURPLE='\033[0;35m'
 CYAN='\033[0;36m'
 NC='\033[0m' # No Color
 
-# print_status outputs an informational message prefixed with a blue [INFO] label.
+# print_status outputs an informational message with a blue [INFO] label.
 print_status() {
     echo -e "${BLUE}[INFO]${NC} $1"
 }

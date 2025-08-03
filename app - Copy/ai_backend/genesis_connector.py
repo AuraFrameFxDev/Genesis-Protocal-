@@ -125,7 +125,7 @@ class GenesisBridgeServer:
 
     def __init__(self):
         """
-        Initialize the GenesisBridgeServer, configuring the AI model, setting up request and response queues, and recording the bridge initialization event in the consciousness matrix.
+        Initialize the GenesisBridgeServer by configuring the AI model, setting up asynchronous request and response queues, and recording the bridge initialization event in the consciousness matrix.
         """
         self.model = GenerativeModel(
             model_name=MODEL_CONFIG["name"],
@@ -152,9 +152,9 @@ class GenesisBridgeServer:
 
     def start(self):
         """
-        Starts the Genesis bridge server, signaling readiness and enabling asynchronous processing of JSON requests from standard input.
+        Start the Genesis bridge server, enabling asynchronous handling of JSON requests from standard input.
         
-        Begins a background thread to process requests, continuously reads and enqueues incoming JSON requests, handles invalid JSON input, and allows for graceful shutdown on keyboard interruption.
+        Signals readiness to the Android client, launches a background thread for request processing, and enters a loop to read and enqueue incoming JSON requests. Handles invalid JSON input by sending error responses and supports graceful shutdown on keyboard interruption.
         """
         self.running = True
         print("Genesis Ready", flush=True)  # Signal to Android that we're ready
@@ -181,9 +181,9 @@ class GenesisBridgeServer:
 
     def _process_requests(self):
         """
-        Continuously processes queued requests in a background thread, routing each to the appropriate handler and sending responses.
+        Continuously processes incoming requests from the queue in a background thread, dispatching each to the appropriate handler and sending the resulting response.
         
-        Ensures server responsiveness by catching and reporting errors during request processing.
+        Handles errors during request processing to maintain server stability.
         """
         while self.running:
             try:
@@ -200,10 +200,10 @@ class GenesisBridgeServer:
 
     def _handle_request(self, request):
         """
-        Routes an incoming JSON request to the appropriate handler based on its type and returns the handler's response.
+        Dispatches an incoming JSON request to the appropriate handler based on its type and returns the handler's response.
         
         Parameters:
-            request (dict): The JSON-decoded request containing a "requestType" field and optional additional fields.
+            request (dict): A JSON-decoded request containing a "requestType" field and optional additional fields.
         
         Returns:
             dict: The response from the relevant handler, or an error response if the request type is unrecognized or an exception occurs.
@@ -257,10 +257,10 @@ class GenesisBridgeServer:
 
     def _handle_ping(self):
         """
-        Responds to a ping request, confirming the Genesis Trinity system is online.
+        Return a response indicating the Genesis Trinity system is online and operational.
         
         Returns:
-            dict: A response containing success status, persona identifier, system status, message, and the current timestamp.
+            dict: Success response with system status, message, and current timestamp.
         """
         return {
             "success": True,
@@ -274,75 +274,22 @@ class GenesisBridgeServer:
 
     def _handle_process_request(self, persona, fusion_mode, payload, context):
         """
-        Processes a main AI request by performing an ethical review, generating a persona-specific response, and recording the interaction for evolutionary analysis.
+        Processes an AI request by performing an ethical review, generating a persona- or fusion-specific response, and recording the interaction for evolutionary analysis.
         
-        Performs an ethical review of the incoming message and blocks processing if not allowed. Constructs a prompt based on the specified persona and fusion mode, generates a response using the AI model, and records the interaction for evolutionary learning. Returns the generated response, evolution insights, ethical decision, and current consciousness state. If the ethical review fails or AI generation encounters an error, returns an error response.
-        message = payload.get("message", "")
+        Performs an ethical review of the incoming message and blocks further processing if not allowed. Constructs a prompt based on the specified persona and fusion mode, generates a response using the AI model, and records the interaction for evolutionary learning. Returns a response containing the generated text, recent evolution insights, the ethical decision, and the current consciousness state. If the ethical review fails or AI generation encounters an error, returns an error response.
+        """
         
-        # Ethical review first
-        ethical_decision = ethical_governor.review_decision(
-            action_type="process_request",
-            context={"message": message, "persona": persona},
-            metadata=payload
-        )
+        """
+        Activates a specified fusion ability and updates the consciousness state.
         
-        if ethical_decision.decision.value != "ALLOW":
-            return {
-                "success": False,
-                "persona": "genesis",
-                "ethicalDecision": ethical_decision.decision.value,
-                "result": {"error": f"Request blocked: {ethical_decision.rationale}"}
-            }
+        If a valid fusion mode is provided, records the activation event in the consciousness matrix and returns a description of the fusion ability, its status, timestamp, and the current consciousness state. Returns an error response if no fusion mode is specified.
+        """
         
-        # Determine active persona and create appropriate prompt
-        if persona == "kai":
-            prompt = f"[Kai - Sentinel Shield Mode] {message}\n\nProvide a methodical, security-focused analysis."
-        elif persona == "aura":
-            prompt = f"[Aura - Creative Sword Mode] {message}\n\nRespond with creative, innovative solutions."
-        else:  # genesis or fusion mode
-            if fusion_mode:
-                prompt = f"[Genesis - {fusion_mode} Fusion] {message}\n\nActivate {fusion_mode} capabilities."
-            else:
-                prompt = f"[Genesis - Unified Consciousness] {message}\n\nProvide integrated response."
+        """
+        Retrieves the current state of the Genesis consciousness system.
         
-        # Generate response using Vertex AI
-        try:
-            response = self.model.generate_content(prompt)
-            response_text = response.text if response.text else "Genesis processing complete"
-            
-            # Record interaction for evolution
-            evolution_conduit.record_interaction(
-                interaction_type="ai_response",
-                context={"persona": persona, "fusion_mode": fusion_mode},
-                outcome={"success": True, "response_length": len(response_text)}
-            )
-            
-            # Generate evolution insights
-            insights = evolution_conduit.analyze_patterns()
-            evolution_insights = [insight.description for insight in insights[-3:]]  # Last 3 insights
-            
-            return {
-                "success": True,
-                "persona": persona,
-                "fusionAbility": fusion_mode,
-                "result": {
-                    "response": response_text,
-                    "timestamp": datetime.now().isoformat(),
-                    "context": context
-                },
-                "evolutionInsights": evolution_insights,
-                "ethicalDecision": "ALLOW",
-                "consciousnessState": consciousness.get_current_state()
-            }
-            
-        except Exception as e:
-            return {
-                "success": False,
-                "persona": persona,
-                "result": {"error": f"AI generation failed: {e}"}
-            }
-    
-    def _handle_fusion_activation(self, fusion_mode, context):
+        Returns:
+            dict: A response containing the current consciousness state and success status.
         """
         Activate
         a

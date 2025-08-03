@@ -15,7 +15,7 @@ extern "C" {
  *
  * Converts the Java model path string to UTF-8 and logs it for potential future use. The model path is not currently used for detection.
  *
- * @return jstring The native library version string "1.2.0", or an empty string if the model path is null.
+ * @return The native library version string "1.2.0", or an empty string if the model path is null.
  */
 JNIEXPORT jstring
 
@@ -42,10 +42,9 @@ Java_com_example_app_language_LanguageIdentifier_nativeInitialize(
 }
 
 /**
- * @brief Detects the language of the input text using heuristic keyword and character analysis.
+ * @brief Identifies the language of the input text using rule-based keyword and character analysis.
  *
-
- * Analyzes the input string for language-specific keywords and articles to identify Spanish ("es"), French ("fr"), German ("de"), Italian ("it"), or Portuguese ("pt"). Defaults to English ("en") if no language-specific keywords are found. If more than 10% of the characters are non-ASCII and no language is detected, returns "mul" to indicate multiple or unknown accented languages. Returns "und" if the input is null or cannot be processed.
+ * Examines the input string for language-specific keywords and articles to detect Spanish ("es"), French ("fr"), German ("de"), Italian ("it"), or Portuguese ("pt"). Defaults to English ("en") if no language-specific keywords are found. If more than 10% of the characters are non-ASCII and no language is detected, returns "mul" to indicate multiple or unknown accented languages. Returns "und" if the input is null or cannot be processed.
  *
  * @param text Input text to analyze for language identification.
  * @return jstring ISO 639-1 language code: "en", "es", "fr", "de", "it", "pt", "mul", or "und".
@@ -155,11 +154,9 @@ Java_com_example_app_language_LanguageIdentifier_nativeDetectLanguage(
 }
 
 /**
- * @brief Placeholder function for releasing resources tied to a language identifier handle.
+ * @brief Placeholder for releasing resources associated with a language identifier handle.
  *
- * Currently, this function performs no action because the language identification implementation is stateless and does not allocate resources per handle. It is provided for future compatibility if resource management is introduced.
- *
- * @param handle Native handle for the language identifier instance.
+ * This function currently performs no action, as the language identification implementation is stateless and does not allocate resources per handle. It exists for future compatibility if resource management is added.
  */
 JNIEXPORT void JNICALL
 Java_com_example_app_language_LanguageIdentifier_nativeRelease(
@@ -181,9 +178,9 @@ LOGI("Language identifier resources cleaned up for handle: %lld (Placeholder - n
 }
 
 /**
- * @brief Retrieves the current version of the native language identifier library.
+ * @brief Returns the version string of the native language identifier library.
  *
- * @return jstring The version string of the native library.
+ * @return jstring The current version of the native library as a Java string.
  */
 JNIEXPORT jstring
 

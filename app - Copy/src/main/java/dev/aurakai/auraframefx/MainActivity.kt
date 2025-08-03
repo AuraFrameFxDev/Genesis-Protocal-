@@ -28,7 +28,7 @@ import dev.aurakai.auraframefx.ui.theme.AuraFrameFXTheme
 
 class MainActivity : ComponentActivity() {
     /**
-     * Initializes the activity and sets the Compose UI content to the main screen using the app's theme.
+     * Sets up the activity's UI by applying the app theme and displaying the main screen using Jetpack Compose.
      *
      * @param savedInstanceState The previously saved state of the activity, or null if none exists.
      */
@@ -43,9 +43,9 @@ class MainActivity : ComponentActivity() {
     }
 
     /**
-     * Called when the activity is about to be destroyed.
+     * Handles cleanup operations before the activity is destroyed.
      *
-     * Override this method to perform cleanup operations before the activity is removed from memory.
+     * Override to release resources or perform final tasks prior to activity removal from memory.
      */
     override fun onDestroy() {
         super.onDestroy()
@@ -61,9 +61,9 @@ class MainActivity : ComponentActivity() {
  */
 @OptIn(ExperimentalMaterial3Api::class)
 /**
- * Composes the main application screen with a scaffolded layout, bottom navigation bar, and an optional digital pixel visual effect.
+ * Displays the main application UI with a scaffolded layout, bottom navigation bar, and optional digital pixel visual effect.
  *
- * Initializes the navigation controller, conditionally applies a digital pixel effect to the content area, and displays the app's navigation graph within a Material3 scaffold.
+ * Provides a text input for theme commands, applies theme changes via the provided view model, and hosts the app's navigation graph. The content area can be visually enhanced with a cyberpunk-style digital pixel effect.
  */
 @Composable
 fun MainScreen(themeViewModel: ThemeViewModel = hiltViewModel()) {
@@ -112,7 +112,7 @@ fun MainScreen(themeViewModel: ThemeViewModel = hiltViewModel()) {
 }
 
 /**
- * Displays a preview of the main screen composable within the app's theme for design-time visualization.
+ * Provides a design-time preview of the main screen composable wrapped in the app's theme.
  */
 @Preview(showBackground = true)
 @Composable
