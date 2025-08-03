@@ -1,0 +1,46 @@
+import org.gradle.api.JavaVersion
+import org.gradle.api.artifacts.VersionCatalogsExtension
+import org.gradle.kotlin.dsl.dependencies
+import org.gradle.kotlin.dsl.getByType
+
+plugins {
+    id("com.android.application")
+    id("org.jetbrains.kotlin.android")
+    id("com.google.devtools.ksp") // Enable KSP for annotation processing
+}
+
+android {
+    // namespace should be defined in individual module build files
+    compileSdk = 36 // Use your desired compileSdk version
+
+    defaultConfig {
+        applicationId = "dev.aurakai.auraframefx"
+        minSdk = 33 // Use your desired minSdk version
+        targetSdk = 36 // Use your desired targetSdk version
+        versionCode = 1
+        versionName = "1.0"
+        testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            isMinifyEnabled = false
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility = JavaVersion.toVersion("24")
+        targetCompatibility = JavaVersion.toVersion("24")
+    }
+
+    // Configure Kotlin compiler options
+    tasks.withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile>().configureEach {
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_24)
+        }
+    }
+}

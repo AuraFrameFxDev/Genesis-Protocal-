@@ -2,14 +2,15 @@ import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 @Suppress("DSL_SCOPE_VIOLATION")
 plugins {
-    id("com.android.application")
-    id("org.jetbrains.kotlin.android")
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.kotlin.android)
     id("com.google.dagger.hilt.android")
-    id("org.jetbrains.kotlin.kapt")
-    alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.kotlin.compose)
-    id("org.openapi.generator") version "7.4.0"
-}
+
+    id("com.google.devtools.ksp")
+    id("org.jetbrains.kotlin.plugin.serialization")
+    id("org.jetbrains.kotlin.plugin.compose")
+
+
 
 android {
     namespace = "dev.aurakai.auraframefx"
@@ -68,10 +69,6 @@ android {
         }
     }
 
-    composeOptions {
-        kotlinCompilerExtensionVersion = libs.versions.composeCompiler.get()
-    }
-
     packaging {
         resources {
             excludes += setOf(
@@ -105,8 +102,11 @@ android {
 
 dependencies {
     // Core AndroidX
-    implementation(libs.androidx.core.ktx)
-    implementation("androidx.appcompat:appcompat:1.7.1")
+    implementation(libs.androidx.core.ktx
+    implementation(libs.androidx.material)
+    implementation(libs.androidx.recyclerview)
+    implementation("androidx.appcompat:appcompat:1.7.0")
+
     implementation(libs.bundles.lifecycle)
     implementation(libs.androidx.activity.compose)
 

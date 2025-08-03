@@ -13,7 +13,7 @@ repositories {
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(24))
-        vendor.set(JvmVendorSpec.ADOPTIUM)
+        vendor.set(JvmVendorSpec.ZULU)
     }
 }
 

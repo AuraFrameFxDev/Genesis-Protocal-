@@ -5,6 +5,9 @@ enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 enableFeaturePreview("STABLE_CONFIGURATION_CACHE")
 
 pluginManagement {
+    plugins {
+        id("org.gradle.toolchains.foojay-resolver-convention") version "0.8.0"
+    }
     repositories {
         gradlePluginPortal()
         google()
@@ -36,8 +39,8 @@ rootProject.name = "Genesis-Os"
 
 // Include only app module for testing
 include(":app")
-// include(":core-module")
-// include(":feature-module")
-// include(":datavein-oracle-drive")
-// include(":datavein-oracle-native")
-// include(":secure-comm")
+include(":core-module")
+include(":feature-module")
+include(":datavein-oracle-drive")
+include(":datavein-oracle-native")
+include(":secure-comm")
