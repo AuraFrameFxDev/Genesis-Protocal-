@@ -261,7 +261,7 @@ class OracleDriveControlViewModel @Inject constructor(
                     auraDriveService ?: throw IllegalStateException("Service not connected")
 
                 val result = service.toggleLSPosedModule(packageName, enable)
-                if (result.equals("true", ignoreCase = true)) {
+                if (result?.toBoolean() == true) {
                     val action = if (enable) "enabled" else "disabled"
                     _status.value = "Module '$packageName' $action successfully"
                     refreshStatus()
