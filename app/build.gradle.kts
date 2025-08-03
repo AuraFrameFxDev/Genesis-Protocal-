@@ -106,16 +106,16 @@ dependencies {
     implementation("androidx.hilt:hilt-work:1.2.0")
 
     // DataStore
-    implementation("androidx.datastore:datastore-preferences:1.1.1")
-    implementation("androidx.datastore:datastore-core:1.1.1")
+    implementation("androidx.datastore:datastore-preferences:1.1.7")
+    implementation("androidx.datastore:datastore-core:1.1.7")
 
     // Moshi for JSON
     implementation("com.squareup.moshi:moshi:1.15.1")
     implementation("com.squareup.moshi:moshi-kotlin:1.15.1")
-    implementation("com.squareup.retrofit2:converter-moshi:2.11.0")
+    implementation("com.squareup.retrofit2:converter-moshi:3.0.0")
 
     // WorkManager
-    implementation("androidx.work:work-runtime-ktx:2.9.1")
+    implementation("androidx.work:work-runtime-ktx:2.10.3")
 
     // Coroutines
     implementation(libs.kotlinx.coroutines.android)
