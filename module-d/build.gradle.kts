@@ -2,9 +2,11 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
     alias(libs.plugins.kotlin.compose)
-    id("io.gitlab.arturbosch.detekt")
-    id("com.diffplug.spotless")
+    alias(libs.plugins.detekt)
+    alias(libs.plugins.spotless)
 }
 
 android {
@@ -35,6 +37,18 @@ android {
         sourceCompatibility = JavaVersion.VERSION_24
         targetCompatibility = JavaVersion.VERSION_24
         isCoreLibraryDesugaringEnabled = true
+    }
+    kotlinOptions {
+        jvmTarget = "24"
+        freeCompilerArgs += listOf(
+            "-Xskip-prerelease-check",
+            "-opt-in=kotlin.RequiresOptIn",
+            "-opt-in=kotlin.ExperimentalStdlibApi",
+            "-Xjvm-default=all",
+            "-progressive"
+        )
+        apiVersion = "2.2"
+        languageVersion = "2.2"
     }
 
     buildFeatures {

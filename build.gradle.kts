@@ -1,10 +1,11 @@
 plugins {
     // Android plugins with explicit versions
-    id("com.android.application") version "8.11.1" apply false
-    id("com.android.library") version "8.11.1" apply false
-    id("com.google.devtools.ksp") version "2.2.0-2.0.2" apply false
-    id("com.google.dagger.hilt.android") version "2.57" apply false
-    alias(libs.plugins.kotlin.compose) apply false
+    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.library)
+    alias(libs.plugins.kotlin.android)
+    alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.ksp)
+    alias(libs.plugins.hilt)
 }
 
 // Configure Java toolchain for all subprojects
