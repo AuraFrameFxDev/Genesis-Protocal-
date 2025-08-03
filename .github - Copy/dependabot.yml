@@ -1,0 +1,12 @@
+version: 2
+updates:
+  # Gradle (Kotlin/Java)
+  - package-ecosystem: "gradle"
+    directory: "/" # Location of build.gradle or build.gradle.kts
+    schedule:
+      interval: "daily"
+  # Python (pip)
+  - package-ecosystem: "pip"
+    directory: "/" # Location of requirements.txt or setup.py
+    schedule:
+      interval: "weekly"
