@@ -7,9 +7,7 @@
 // The name MUST follow the pattern: Java_your_package_name_YourActivityName_yourMethodName
 // Note that underscores in the package name are replaced with _1.
 extern "C" /**
- * @brief Returns a greeting message from native C++ code to Java.
- *
- * Creates and returns a new Java string containing "Hello from Genesis C++ Core".
+ * @brief Creates and returns a new Java string containing "Hello from Genesis C++ Core".
  *
  * @return jstring A Java string with the greeting message.
  */

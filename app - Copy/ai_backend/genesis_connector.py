@@ -125,7 +125,7 @@ class GenesisBridgeServer:
 
     def __init__(self):
         """
-        Initialize the GenesisBridgeServer by configuring the AI model, setting up asynchronous request and response queues, and recording the bridge initialization event in the consciousness matrix.
+        Initialize the GenesisBridgeServer with AI model configuration, asynchronous request and response queues, and record the bridge initialization event in the consciousness matrix.
         """
         self.model = GenerativeModel(
             model_name=MODEL_CONFIG["name"],
@@ -152,9 +152,9 @@ class GenesisBridgeServer:
 
     def start(self):
         """
-        Start the Genesis bridge server, enabling asynchronous handling of JSON requests from standard input.
+        Starts the Genesis bridge server, enabling asynchronous processing of JSON requests from standard input.
         
-        Signals readiness to the Android client, launches a background thread for request processing, and enters a loop to read and enqueue incoming JSON requests. Handles invalid JSON input by sending error responses and supports graceful shutdown on keyboard interruption.
+        Signals readiness to the client, launches a background thread for request handling, and continuously reads and enqueues incoming JSON requests. Sends error responses for invalid JSON input and supports graceful shutdown on keyboard interruption.
         """
         self.running = True
         print("Genesis Ready", flush=True)  # Signal to Android that we're ready
@@ -181,9 +181,9 @@ class GenesisBridgeServer:
 
     def _process_requests(self):
         """
-        Continuously processes incoming requests from the queue in a background thread, dispatching each to the appropriate handler and sending the resulting response.
+        Continuously processes requests from the queue in a background thread, dispatching each to the appropriate handler and sending responses.
         
-        Handles errors during request processing to maintain server stability.
+        Handles exceptions during processing to ensure server stability.
         """
         while self.running:
             try:
@@ -200,13 +200,13 @@ class GenesisBridgeServer:
 
     def _handle_request(self, request):
         """
-        Dispatches an incoming JSON request to the appropriate handler based on its type and returns the handler's response.
+        Dispatches a JSON-formatted request to the appropriate handler based on its type and returns the handler's response.
         
         Parameters:
-            request (dict): A JSON-decoded request containing a "requestType" field and optional additional fields.
+            request (dict): The incoming request containing a "requestType" field and optional additional fields.
         
         Returns:
-            dict: The response from the relevant handler, or an error response if the request type is unrecognized or an exception occurs.
+            dict: The response from the selected handler, or an error response if the request type is unrecognized or an exception occurs.
         """
         try:
             request_type = request.get("requestType", "")
@@ -257,10 +257,10 @@ class GenesisBridgeServer:
 
     def _handle_ping(self):
         """
-        Return a response indicating the Genesis Trinity system is online and operational.
+        Return a success response confirming the Genesis Trinity system is online.
         
         Returns:
-            dict: Success response with system status, message, and current timestamp.
+            dict: A response containing system status, confirmation message, and the current timestamp.
         """
         return {
             "success": True,
@@ -274,9 +274,16 @@ class GenesisBridgeServer:
 
     def _handle_process_request(self, persona, fusion_mode, payload, context):
         """
-        Processes an AI request by performing an ethical review, generating a persona- or fusion-specific response, and recording the interaction for evolutionary analysis.
+        Activates a specified fusion ability and updates the Genesis consciousness state.
         
-        Performs an ethical review of the incoming message and blocks further processing if not allowed. Constructs a prompt based on the specified persona and fusion mode, generates a response using the AI model, and records the interaction for evolutionary learning. Returns a response containing the generated text, recent evolution insights, the ethical decision, and the current consciousness state. If the ethical review fails or AI generation encounters an error, returns an error response.
+        If a valid fusion mode is provided, records the activation event in the consciousness matrix and returns a response with the fusion ability's description, status, timestamp, and the current consciousness state. Returns an error response if no fusion mode is specified.
+        
+        Parameters:
+            fusion_mode (str): The fusion ability to activate.
+            context (dict): Additional context for the activation event.
+        
+        Returns:
+            dict: Response indicating success or failure, fusion ability details, and current consciousness state.
         """
         
         """

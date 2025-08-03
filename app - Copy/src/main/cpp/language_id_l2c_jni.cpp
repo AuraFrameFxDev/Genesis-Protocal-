@@ -44,10 +44,10 @@ Java_com_example_app_language_LanguageIdentifier_nativeInitialize(
 /**
  * @brief Identifies the language of the input text using rule-based keyword and character analysis.
  *
- * Examines the input string for language-specific keywords and articles to detect Spanish ("es"), French ("fr"), German ("de"), Italian ("it"), or Portuguese ("pt"). Defaults to English ("en") if no language-specific keywords are found. If more than 10% of the characters are non-ASCII and no language is detected, returns "mul" to indicate multiple or unknown accented languages. Returns "und" if the input is null or cannot be processed.
+ * Analyzes the input string for language-specific keywords and articles to determine if the text is in Spanish ("es"), French ("fr"), German ("de"), Italian ("it"), or Portuguese ("pt"). Defaults to English ("en") if no language-specific keywords are found. If more than 10% of the characters are non-ASCII and the detected language is still "en", returns "mul" to indicate multiple or unknown accented languages. Returns "und" if the input is null or cannot be processed.
  *
  * @param text Input text to analyze for language identification.
- * @return jstring ISO 639-1 language code: "en", "es", "fr", "de", "it", "pt", "mul", or "und".
+ * @return ISO 639-1 language code: "en", "es", "fr", "de", "it", "pt", "mul", or "und".
  */
 JNIEXPORT jstring
 
@@ -154,9 +154,9 @@ Java_com_example_app_language_LanguageIdentifier_nativeDetectLanguage(
 }
 
 /**
- * @brief Placeholder for releasing resources associated with a language identifier handle.
+ * @brief Placeholder function for releasing resources tied to a language identifier handle.
  *
- * This function currently performs no action, as the language identification implementation is stateless and does not allocate resources per handle. It exists for future compatibility if resource management is added.
+ * Currently performs no action, as the implementation is stateless and does not allocate resources per handle. Exists for future compatibility if resource management is introduced.
  */
 JNIEXPORT void JNICALL
 Java_com_example_app_language_LanguageIdentifier_nativeRelease(
@@ -178,9 +178,9 @@ LOGI("Language identifier resources cleaned up for handle: %lld (Placeholder - n
 }
 
 /**
- * @brief Returns the version string of the native language identifier library.
+ * @brief Returns the current version of the native language identifier library as a Java string.
  *
- * @return jstring The current version of the native library as a Java string.
+ * @return The version string of the native library.
  */
 JNIEXPORT jstring
 

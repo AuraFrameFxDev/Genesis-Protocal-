@@ -56,9 +56,9 @@ class OracleDriveControlViewModel @Inject constructor(
     // Service connection
     private val connection = object : ServiceConnection {
         /**
-         * Called when the AuraDriveService is connected.
+         * Handles actions when the AuraDriveService is connected.
          *
-         * Initializes the service interface, updates connection state, and triggers a status refresh.
+         * Initializes the service interface, marks the service as bound, updates the service connection state, and triggers a status refresh.
          */
         override fun onServiceConnected(className: ComponentName, service: IBinder) {
             Log.d(TAG, "Service connected")
@@ -69,9 +69,9 @@ class OracleDriveControlViewModel @Inject constructor(
         }
 
         /**
-         * Handles the event when the AuraDriveService is disconnected.
+         * Handles disconnection from the AuraDriveService.
          *
-         * Updates the internal state to reflect that the service is no longer bound and notifies observers of the disconnection.
+         * Updates internal state to indicate the service is unbound and notifies observers of the disconnection.
          */
         override fun onServiceDisconnected(arg0: ComponentName) {
             Log.d(TAG, "Service disconnected")
@@ -86,9 +86,9 @@ class OracleDriveControlViewModel @Inject constructor(
     }
 
     /**
-     * Attempts to bind to the AuraDriveService to enable Oracle Drive operations.
+     * Initiates binding to the AuraDriveService for Oracle Drive operations.
      *
-     * Updates the status to reflect connection progress. Sets an error message if binding fails.
+     * Updates the status to indicate connection progress and sets an error message if binding fails.
      */
     fun bindService() {
         try {
@@ -107,9 +107,9 @@ class OracleDriveControlViewModel @Inject constructor(
     }
 
     /**
-     * Unbinds the ViewModel from the AuraDriveService if currently bound.
+     * Unbinds from the AuraDriveService if currently connected.
      *
-     * Updates connection state and status to reflect the disconnection.
+     * Updates internal state to reflect the disconnection and notifies observers of the status change.
      */
     fun unbindService() {
         if (isBound) {
@@ -121,9 +121,9 @@ class OracleDriveControlViewModel @Inject constructor(
     }
 
     /**
-     * Refreshes the Oracle Drive status, detailed status, and diagnostics log from the bound service.
+     * Retrieves and updates the Oracle Drive status, detailed status, and diagnostics log from the bound service.
      *
-     * Updates the corresponding UI state flows with the latest information retrieved from the service. Sets an error message if the operation fails.
+     * Updates the corresponding UI state flows with the latest data or sets an error message if retrieval fails.
      */
     fun refreshStatus() {
         viewModelScope.launch {
@@ -149,11 +149,11 @@ class OracleDriveControlViewModel @Inject constructor(
     }
 
     /**
-     * Initiates the import of a file from the specified URI via the AuraDriveService.
+     * Imports a file from the given URI using the AuraDriveService.
      *
-     * Launches an asynchronous operation to import the file, updating UI state with the result or any error encountered.
+     * Starts an asynchronous operation to import the file, updating the UI state with the outcome or any errors encountered.
      *
-     * @param uri The URI of the file to be imported.
+     * @param uri The URI of the file to import.
      */
     fun importFile(uri: Uri) {
         viewModelScope.launch {
@@ -178,12 +178,12 @@ class OracleDriveControlViewModel @Inject constructor(
     }
 
     /**
-     * Initiates the export of a file with the given ID to the specified destination URI via the AuraDriveService.
+     * Exports a file identified by its ID to the specified destination URI using the AuraDriveService.
      *
-     * Updates status and error message state flows based on the outcome of the export operation.
+     * Updates UI state flows to reflect the result of the export operation, including status and error messages.
      *
-     * @param fileId The unique identifier of the file to export.
-     * @param destinationUri The URI where the file will be exported.
+     * @param fileId The unique identifier of the file to be exported.
+     * @param destinationUri The URI where the file will be saved.
      */
     fun exportFile(fileId: String, destinationUri: Uri) {
         viewModelScope.launch {
@@ -212,9 +212,9 @@ class OracleDriveControlViewModel @Inject constructor(
     }
 
     /**
-     * Verifies the integrity of a file with the given identifier using the AuraDriveService.
+     * Initiates verification of a file's integrity by its identifier using the AuraDriveService.
      *
-     * Updates UI state to indicate verification success or failure, and sets error messages if verification fails or an exception occurs.
+     * Updates UI state to reflect verification results and sets an error message if verification fails or an exception occurs.
      *
      * @param fileId The unique identifier of the file to verify.
      */
@@ -244,12 +244,12 @@ class OracleDriveControlViewModel @Inject constructor(
     }
 
     /**
-     * Enables or disables a module by its package name using the AuraDrive service.
+     * Enables or disables a module identified by its package name via the AuraDrive service.
      *
-     * Updates the status or error message state flows based on the outcome and refreshes the current status if successful.
+     * Updates the status or error message state flows based on the operation result and refreshes the current status if successful.
      *
-     * @param packageName The package name of the module to enable or disable.
-     * @param enable Set to `true` to enable the module, or `false` to disable it.
+     * @param packageName The package name of the module to modify.
+     * @param enable `true` to enable the module, `false` to disable it.
      */
     fun toggleModule(packageName: String, enable: Boolean) {
         viewModelScope.launch {
@@ -279,7 +279,7 @@ class OracleDriveControlViewModel @Inject constructor(
     }
 
     /**
-     * Cleans up resources when the ViewModel is destroyed, including unbinding from the AuraDriveService.
+     * Unbinds from the AuraDriveService and performs cleanup when the ViewModel is destroyed.
      */
     override fun onCleared() {
         super.onCleared()

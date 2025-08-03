@@ -10,11 +10,11 @@ import javax.inject.Inject
 class VertexSyncService : Service() {
     // Example dependency injection (add real dependencies as needed)
     /**
-     * Called when a client attempts to bind to the service.
+     * Handles client binding requests to the service.
      *
-     * This service does not support binding and always returns null.
+     * Always returns null to indicate that this service does not support binding.
      *
-     * @return Always returns null, indicating binding is not allowed.
+     * @return Null, indicating binding is not permitted.
      */
     override fun onBind(_intent: Intent?): IBinder? {
         // Not designed for binding; implement if needed
@@ -22,11 +22,11 @@ class VertexSyncService : Service() {
     }
 
     /**
-     * Handles the start request for the service.
+     * Handles a start request for the service and specifies its restart behavior.
      *
-     * Returns `START_NOT_STICKY`, indicating the system should not recreate the service if it is killed after returning from this method.
+     * Always returns `START_NOT_STICKY`, so the system will not recreate the service if it is killed after this method returns.
      *
-     * @return The start mode for the service, which is always `START_NOT_STICKY`.
+     * @return `START_NOT_STICKY` to indicate the service should not be restarted automatically.
      */
     override fun onStartCommand(_intent: Intent?, _flags: Int, _startId: Int): Int {
         // Implement service logic here (e.g., start sync tasks)
