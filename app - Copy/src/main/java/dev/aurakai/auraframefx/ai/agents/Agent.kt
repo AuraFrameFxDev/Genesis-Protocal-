@@ -22,14 +22,14 @@ interface Agent {
     fun getName(): String?
 
     /**
- * Retrieves the type or model of the agent.
+ * Retrieves the type or classification of the agent.
  *
  * @return The agent's type as an `AgentType`.
  */
     fun getType(): AgentType
 
     /**
- * Processes an AI request with the provided context and returns the agent's response.
+ * Processes an AI request with the given context and returns the agent's response.
  *
  * @param request The AI request to process.
  * @param context Additional context information for the request.
@@ -38,9 +38,9 @@ interface Agent {
     suspend fun processRequest(request: AiRequest, context: String): AgentResponse
 
     /**
- * Processes an AI request and returns a flow emitting agent responses.
+ * Processes an AI request and returns a flow of agent responses.
  *
- * The returned flow may emit multiple responses over time for the given request.
+ * Enables streaming or multiple responses for a single request.
  *
  * @param request The AI request to process.
  * @return A flow emitting one or more agent responses.

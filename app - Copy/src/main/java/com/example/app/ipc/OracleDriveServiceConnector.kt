@@ -19,10 +19,10 @@ class OracleDriveServiceConnector(private val context: Context) {
     val isServiceConnected: StateFlow<Boolean> = _isServiceConnected.asStateFlow()
 
     private val serviceConnection = object : ServiceConnection {
-        /****
-         * Called when the AuraDrive service has been connected.
+        /**
+         * Called when the AuraDrive service is connected.
          *
-         * Sets the remote `IAuraDriveService` interface reference and marks the connection as active.
+         * Retrieves the remote `IAuraDriveService` interface from the provided binder and marks the service as connected.
          *
          * @param name The component name of the connected service.
          * @param service The binder interface to the connected service.
@@ -33,9 +33,9 @@ class OracleDriveServiceConnector(private val context: Context) {
         }
 
         /**
-         * Handles disconnection from the AuraDrive service.
+         * Called when the connection to the AuraDrive service has been lost.
          *
-         * Clears the remote service reference and updates the connection state to indicate disconnection.
+         * Clears the reference to the remote service and updates the connection state to indicate disconnection.
          */
         override fun onServiceDisconnected(name: ComponentName?) {
             auraDriveService = null
@@ -63,7 +63,7 @@ class OracleDriveServiceConnector(private val context: Context) {
     }
 
     /**
-     * Unbinds from the AuraDrive service and updates the connection state to disconnected.
+     * Unbinds from the remote AuraDrive service and updates the connection state to disconnected.
      *
      * Any exceptions during unbinding are silently ignored.
      */
@@ -77,7 +77,7 @@ class OracleDriveServiceConnector(private val context: Context) {
     }
 
     /**
-     * Retrieves the current status from the remote AuraDrive service.
+     * Retrieves the current status string from the remote AuraDrive service.
      *
      * @return The status string reported by the remote service, or null if the service is unavailable or a RemoteException occurs.
      */
@@ -92,7 +92,7 @@ class OracleDriveServiceConnector(private val context: Context) {
     /**
          * Requests the remote AuraDrive service to toggle its LSPosed module.
          *
-         * The `packageName` and `enable` parameters are not used by the remote service.
+         * The `packageName` and `enable` parameters are accepted for interface compatibility but are not used by the remote service.
          *
          * @return "Success" if the module was toggled successfully, "Failed" if the operation did not succeed, or null if the service is unavailable or a remote exception occurs.
          */
@@ -109,7 +109,7 @@ class OracleDriveServiceConnector(private val context: Context) {
     /**
      * Retrieves a detailed internal status report from the remote AuraDrive service.
      *
-     * @return The detailed status string, or null if the service is unavailable or a RemoteException occurs.
+     * @return The detailed status string, or null if the service is unavailable or a remote exception occurs.
      */
     suspend fun getDetailedInternalStatus(): String? = withContext(Dispatchers.IO) {
         try {
@@ -120,11 +120,9 @@ class OracleDriveServiceConnector(private val context: Context) {
     }
 
     /**
-     * Retrieves the internal diagnostics log from the remote AuraDrive service as a single string.
+     * Retrieves the internal diagnostics log from the remote AuraDrive service as a single newline-separated string.
      *
-     * The log entries are joined with newline characters. Returns null if the service is unavailable or a remote exception occurs.
-     *
-     * @return The diagnostics log as a newline-separated string, or null if not available.
+     * @return The diagnostics log as a newline-separated string, or null if the service is unavailable or a remote exception occurs.
      */
     suspend fun getInternalDiagnosticsLog(): String? = withContext(Dispatchers.IO) {
         try {

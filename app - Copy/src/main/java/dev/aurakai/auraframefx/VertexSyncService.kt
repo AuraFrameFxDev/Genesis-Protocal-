@@ -10,9 +10,11 @@ import javax.inject.Inject
 class VertexSyncService : Service() {
     // Example dependency injection (add real dependencies as needed)
     /**
-     * Indicates that this service does not support binding.
+     * Called when a client attempts to bind to the service.
      *
-     * @return Always returns null, as binding is not implemented.
+     * This service does not support binding and always returns null.
+     *
+     * @return Always returns null, indicating binding is not allowed.
      */
     override fun onBind(_intent: Intent?): IBinder? {
         // Not designed for binding; implement if needed
