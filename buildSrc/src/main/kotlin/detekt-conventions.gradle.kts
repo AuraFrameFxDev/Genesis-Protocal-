@@ -65,7 +65,6 @@ tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
 
     // Enable/disable the parallel execution of detekt
     // Only makes sense if parallel execution is enabled for the Gradle project
-    parallel = true
 
     // Specify the base path for file paths in the output
     // If not set, the directory containing the config file will be used

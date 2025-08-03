@@ -167,3 +167,10 @@ dependencies {
     // Dokka for documentation
     implementation("org.openapitools:openapi-generator-gradle-plugin:7.4.0")
 }
+
+// Documentation validation testing dependencies
+dependencies {
+    // Core testing framework (already present via libs.bundles.testing)
+    // Additional documentation-specific testing utilities
+    testImplementation("org.jsoup:jsoup:1.17.2") // For HTML/markdown parsing if needed
+}
