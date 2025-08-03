@@ -105,7 +105,7 @@ dependencies {
     implementation(libs.androidx.core.ktx
     implementation(libs.androidx.material)
     implementation(libs.androidx.recyclerview)
-    implementation("androidx.appcompat:appcompat:1.7.0")
+    implementation("androidx.appcompat:appcompat:1.7.1")
 
     implementation(libs.bundles.lifecycle)
     implementation(libs.androidx.activity.compose)
